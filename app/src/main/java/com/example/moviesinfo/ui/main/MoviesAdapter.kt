@@ -43,7 +43,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
         this.onLoadMoreListener = listener
     }
 
-    fun setonMovieClickListener(listener: OnMovieClickListener) {
+    fun setOnMovieClickListener(listener: OnMovieClickListener) {
         this.onMovieClickListener = listener
     }
 
