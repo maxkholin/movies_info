@@ -1,6 +1,9 @@
 package com.example.moviesinfo.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
@@ -31,8 +34,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        startActivity(FavoriteMoviesActivity.newIntent(this))
 
         initComponents()
         setupRecyclerView()
@@ -85,5 +86,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadMovies() {
         viewModel.loadMovies()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.favorite_movies) {
+            startActivity(FavoriteMoviesActivity.newIntent(this))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
