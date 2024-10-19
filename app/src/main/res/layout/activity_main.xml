@@ -8,9 +8,9 @@
     tools:context=".ui.main.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/recyclerViewMovies"
-        android:layout_height="match_parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/progressBarLoading"

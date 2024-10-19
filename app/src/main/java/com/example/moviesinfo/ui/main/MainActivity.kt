@@ -1,6 +1,8 @@
 package com.example.moviesinfo.ui.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesinfo.R
 import com.example.moviesinfo.data.models.Movie
 import com.example.moviesinfo.ui.detail.MovieDetailActivity
+import com.example.moviesinfo.ui.favorite.FavoriteMoviesActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        moviesAdapter.setonMovieClickListener(object : MoviesAdapter.OnMovieClickListener {
+        moviesAdapter.setOnMovieClickListener(object : MoviesAdapter.OnMovieClickListener {
             override fun onMovieClick(movie: Movie) {
                 val intent = MovieDetailActivity.newIntent(this@MainActivity, movie)
                 startActivity(intent)
@@ -82,5 +85,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadMovies() {
         viewModel.loadMovies()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.favorite_movies) {
+            startActivity(FavoriteMoviesActivity.newIntent(this))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
