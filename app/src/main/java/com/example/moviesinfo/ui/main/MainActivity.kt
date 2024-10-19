@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesinfo.R
 import com.example.moviesinfo.data.models.Movie
 import com.example.moviesinfo.ui.detail.MovieDetailActivity
+import com.example.moviesinfo.ui.favorite.FavoriteMoviesActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        startActivity(FavoriteMoviesActivity.newIntent(this))
 
         initComponents()
         setupRecyclerView()
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        moviesAdapter.setonMovieClickListener(object : MoviesAdapter.OnMovieClickListener {
+        moviesAdapter.setOnMovieClickListener(object : MoviesAdapter.OnMovieClickListener {
             override fun onMovieClick(movie: Movie) {
                 val intent = MovieDetailActivity.newIntent(this@MainActivity, movie)
                 startActivity(intent)
